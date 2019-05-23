@@ -1,0 +1,16 @@
+{
+  "name": "koa",
+  "version": "0.1.0",
+  "description": "koa",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-static": "^4.0.1"
+  },
+  "devDependencies": {},
+  "author": "belle",
+  "license": "ISC"
+}
