@@ -15,8 +15,8 @@
     </style>
 </head>
 <body onload="draw();">
-
 </body>
+
 <script src="js/libs/three.js"></script>
 <script src="js/libs/STLLoader.js"></script>
 <script src="js/libs/OrbitControls.js"></script>
@@ -70,7 +70,7 @@
         footerLight.position.set(0,-100,50);
         //告诉平行光需要开启阴影投射
         footerLight.castShadow = true;
-        // scene.add(footerLight);
+        scene.add(footerLight);
     }
 
     function initModel() {
@@ -97,7 +97,7 @@
             scene.add(mesh);
         }, function(progress) {
             const loaded = getLength(progress.loaded);
-            console.log('left:', loaded, '%');
+            console.log('left:', loaded);
         }, function(error) {
             console.log(error);
         });
@@ -112,7 +112,7 @@
             scene.add(mesh);
         }, function(progress) {
             const loaded = getLength(progress.loaded);
-            console.log('right:', loaded, '%');
+            console.log('right:', loaded);
         }, function(error) {
             console.log(error);
         });
@@ -140,8 +140,8 @@
         //是否可以缩放
         controls.enableZoom = true;
         //是否自动旋转
-        // controls.autoRotate = true;
-        // controls.autoRotateSpeed = 0.5;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
         //设置相机距离原点的最远距离
         controls.minDistance  = 1;
         //设置相机距离原点的最远距离
