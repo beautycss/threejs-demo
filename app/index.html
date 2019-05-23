@@ -56,16 +56,21 @@
     }
 
     var light;
+    var footerLight;
     function initLight() {
         scene.add(new THREE.AmbientLight(0x444444));
 
         light = new THREE.PointLight(0xffffff);
         light.position.set(0,50,50);
-
         //告诉平行光需要开启阴影投射
         light.castShadow = true;
-
         scene.add(light);
+
+        footerLight = new THREE.PointLight(0xffffff);
+        footerLight.position.set(0,-100,50);
+        //告诉平行光需要开启阴影投射
+        footerLight.castShadow = true;
+        // scene.add(footerLight);
     }
 
     function initModel() {
@@ -73,6 +78,11 @@
         //辅助工具
         var helper = new THREE.AxesHelper(50);
         scene.add(helper);
+
+        getLength = (number) => {
+            const formatNumber = (number / 1000 / 1000).toFixed(1);
+            return `${formatNumber}M`;
+        }
 
         var loader = new THREE.STLLoader();
         loader.load("stl/BL171090_03580.left.stl", function (geometry) {
@@ -85,6 +95,11 @@
             mesh.scale.set(0.1, 0.1, 0.1); //缩放
             // geometry.center(); //居中显示
             scene.add(mesh);
+        }, function(progress) {
+            const loaded = getLength(progress.loaded);
+            console.log('left:', loaded, '%');
+        }, function(error) {
+            console.log(error);
         });
 
         loader.load("stl/BL171090_03580.right.stl", function (geometry) {
@@ -95,6 +110,11 @@
             mesh.scale.set(0.1, 0.1, 0.1); //缩放
             // geometry.center(); //居中显示
             scene.add(mesh);
+        }, function(progress) {
+            const loaded = getLength(progress.loaded);
+            console.log('right:', loaded, '%');
+        }, function(error) {
+            console.log(error);
         });
     }
 
